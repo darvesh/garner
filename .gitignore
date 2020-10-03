@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
 #Custom
-src/config.ts
+src/config/config.ts
 build
 package-lock.json
 
