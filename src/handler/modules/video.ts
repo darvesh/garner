@@ -3,20 +3,19 @@ import type { Connection } from "typeorm";
 
 import { Markup } from "telegraf";
 
-import { UserRepository } from "../repository/UserRepository";
-import { brokeTheBot, logError } from "../utils";
-import { OWNER_ID, POST_LIMIT } from "../config/config";
-import { PostRepository } from "../repository/PostRepository";
-import { MediaType, PostStatus } from "../entity/Post";
+import { UserRepository } from "../../repository/UserRepository";
+import { brokeTheBot, logError } from "../../utils";
+import { OWNER_ID } from "../../config/config";
+import { PostRepository } from "../../repository/PostRepository";
+import { MediaType, PostStatus } from "../../entity/Post";
 
-export const postHandler = async (
+export const videoHandler = async (
 	ctx: TelegrafContext,
 	connection: Connection
 ) => {
 	try {
 		const chatId = ctx.from?.id ?? 0;
-		console.log(ctx.message);
-		const imageId = ctx.message?.photo?.[0].file_id ?? "";
+		const videoId = ctx.message?.video?.file_id ?? "";
 		const userRepository = connection.getCustomRepository(UserRepository);
 		const postRepositry = connection.getCustomRepository(PostRepository);
 
@@ -26,8 +25,8 @@ export const postHandler = async (
 		await userRepository.updateUser(chatId, user.count + 1, false);
 		const post = await postRepositry.createAndSave(
 			chatId,
-			imageId,
-			MediaType.IMAGE
+			videoId,
+			MediaType.VIDEO
 		);
 		const keyboard = [
 			[
@@ -45,7 +44,7 @@ export const postHandler = async (
 			]
 		];
 
-		await ctx.telegram.sendPhoto(OWNER_ID, imageId, {
+		await ctx.telegram.sendVideo(OWNER_ID, videoId, {
 			reply_markup: { inline_keyboard: keyboard }
 		});
 
@@ -55,6 +54,6 @@ export const postHandler = async (
 		);
 	} catch (error) {
 		logError(error.message);
-		brokeTheBot(ctx);
+		brokeTheBot(ctx, undefined, error.message);
 	}
 };

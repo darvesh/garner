@@ -4,8 +4,8 @@ import { User } from "./User";
 
 export enum MediaType {
 	VIDEO = "video",
-	GIF = "gif",
-	IMAGE = "image"
+	ANIMATION = "animation",
+	PHOTO = "image"
 }
 export enum PostStatus {
 	PENDING = "pending",
@@ -29,6 +29,9 @@ export class Post {
 	@Column()
 	fileId: string;
 
-	@ManyToOne(type => User, user => user.id)
+	@ManyToOne(type => User, user => user.id, {
+		onDelete: "CASCADE",
+		onUpdate: "CASCADE"
+	})
 	chatID: number;
 }

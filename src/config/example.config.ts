@@ -1,5 +1,13 @@
-export const TOKEN = "";
+import { Config } from "./configTypes";
 
-export const TIME_LIMIT = 5; //in minutes
-export const POST_LIMIT = 2; //number of posts within TIME_LIMIT
-export const OWNER_ID = [272286804]; //id of the owners
+const config: Config = {
+	//CHANGE IT ACCORDING TO YOUR NEED
+	TOKEN: "",
+	TIME_LIMIT: 5, //in minutes
+	POST_LIMIT: 2,
+	OWNER_ID: 0,
+	CONTENT_QUALITY: "minimum",
+	COMMANDS: [["start", "This is bot x"]]
+};
+
+export = config;
