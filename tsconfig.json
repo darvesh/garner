@@ -13,6 +13,7 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"strictPropertyInitialization": false,
+		"allowSyntheticDefaultImports": true,
 		"lib": ["ES2020"]
 	},
 	"include": ["src/**/*"],

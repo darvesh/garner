@@ -9,8 +9,8 @@ export class User {
 	@Column()
 	valid: boolean;
 
-	@Column({ default: () => "current_timestamp" })
-	date: string;
+	@Column()
+	firstPostTime: number;
 
 	@Column({
 		default: () => 0

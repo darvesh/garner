@@ -1,8 +1,8 @@
 import type { Connection } from "typeorm";
 import type { TelegrafContext } from "telegraf/typings/context";
 
-import { brokeTheBot, logError } from "../utils";
-import { UserRepository } from "../repository/UserRepository";
+import { brokeTheBot, logError } from "../../utils";
+import { UserRepository } from "../../repository/UserRepository";
 
 export const cancelHandler = async (
 	ctx: TelegrafContext,
@@ -20,6 +20,6 @@ export const cancelHandler = async (
 		return ctx.reply("Submission cancelled.");
 	} catch (error) {
 		logError(error.message);
-		brokeTheBot(ctx);
+		brokeTheBot(ctx, undefined, error.message);
 	}
 };
