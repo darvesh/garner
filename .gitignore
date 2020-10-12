@@ -6,6 +6,7 @@
 src/config/config.ts
 build
 package-lock.json
+.vscode
 
 ### Node ###
 # Logs
