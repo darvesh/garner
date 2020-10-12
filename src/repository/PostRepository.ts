@@ -9,5 +9,5 @@ export class PostRepository extends Repository<Post> {
 		post.type = fileType;
 		post.fileId = fileId;
 		return this.manager.save(post);
-    }
+	}
 }

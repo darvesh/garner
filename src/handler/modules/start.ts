@@ -10,8 +10,8 @@ export const startHandler = async (
 ) => {
 	try {
 		const userRepository = connection.getCustomRepository(UserRepository);
-        const chatId = ctx.from?.id ?? 0;
-        ctx.reply(
+		const chatId = ctx.from?.id ?? 0;
+		ctx.reply(
 			"A bot to share screenshot of shit devs say you come across. If it's good, I'll post it on the channel \
         Send /submit followed by the file you want to share"
 		);

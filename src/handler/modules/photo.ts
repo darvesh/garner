@@ -22,11 +22,10 @@ export const photoHandler = async (
 		const user = await userRepository.findOne(chatId);
 		if (!user || !user.valid) return;
 
-		
 		const count = user.count + 1;
 		// console.log({user});
 		// console.log({increased: count})
-		
+
 		await userRepository.updateUser(chatId, count, false);
 		const post = await postRepositry.createAndSave(
 			chatId,
@@ -47,12 +46,7 @@ export const photoHandler = async (
 					JSON.stringify({ id: post.id, status: PostStatus.POSTED })
 				)
 			],
-			[
-				Markup.callbackButton(
-					"Delete",
-					`delete=${post.id}`
-				)
-			]
+			[Markup.callbackButton("Delete", `delete=${post.id}`)]
 		];
 
 		await ctx.telegram.sendPhoto(OWNER_ID, imageId, {
